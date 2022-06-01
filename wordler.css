@@ -1,0 +1,342 @@
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+  max-width: 500px;
+  position: relative;
+  margin: auto;
+  padding: 5px;
+  font-family: Verdana, Ariel, Helvetica, sans-serif;
+}
+
+button {
+  max-width: 60px;
+  margin: auto 2px;
+  height: 50px;
+  font-size: 16px;
+  background-color: #f2f2f2;
+  border: 1px solid #cccccc;
+  border-radius: 9px;
+  align-self: center;
+}
+
+button#go-button {
+  width: 60px;
+}
+
+button#query-button {
+  height: 26px;
+  width: 26px;
+}
+
+
+/* The tricks for styling text inputs come
+   from Elson Correia, writing at
+    https://medium.com/codex/how-to-style-an-input-field-with-css-only-tips-and-techniques-e6a00e9dcc50 */
+
+.textinput {
+  position: relative;
+  font-size: 14px;
+  border-top: 20px solid transparent;
+  --field-padding: 8px;
+}
+
+.textinput input {
+  max-width: 200px;
+  flex: 200 200px;
+  margin: auto 0;
+  border: 1px solid #f2f2f2;
+  -webkit-appearance: none;
+  -ms-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: #f2f2f2;
+  padding: var(--field-padding);
+  outline: none;
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+
+.textinput input:disabled {
+  opacity: 0.5;
+}
+
+.textinput input.inputGood {
+  border: 1px solid green;
+}
+
+.textinput input.inputBad {
+  border: 1px solid #f46565;
+}
+
+.textinput .placeholder {
+  position: absolute;
+  left: var(--field-padding);
+  width: calc(100% - (var(--field-padding) * 2));
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  top: 24px;
+  transform: translateY(-50%);
+  color: #aaa;
+  transition: 
+    top 0.3s ease,
+    color 0.3s ease,
+    font-size 0.3s ease;
+}
+
+.textinput input.dirty + .placeholder,
+.textinput input:focus + .placeholder,
+.textinput input:not(:placeholder-shown) + .placeholder {
+  top: -10px;
+  font-size: 10px;
+  color: #444;
+}
+
+.textinput .error-message {
+  width: 200px;
+  display: flex;
+  flex: 200 200px;
+  align-items: center;
+  padding: 0 4px;
+  font-size: 10px;
+  background: #f46565;
+  color: #fff;
+  height: 21px;
+}
+
+.textinput .error-message:empty {
+  opacity: 0;
+}
+
+div#snark {
+  height: 16px;
+  position: relative; 
+  margin: 0px auto;
+  color: #001bba;
+  font-size: 14px;
+  text-align: center;
+}
+
+.fadeout {
+animation-name: fadeout;
+animation-delay: 4s;
+animation-duration: 2s;
+animation-fill-mode: forwards;
+}
+
+@keyframes fadeout {
+  from {
+    opacity: 1.0;
+  }
+  to {
+    opacity: 0.0;
+  }
+}
+
+div#snark[data-winorlose="win"] {
+  color: #001bba;
+}
+
+div#snark[data-winorlose="lose"] {
+  color: #dd2c2c;
+}
+
+h2 {
+  font-size: 1.5em;
+  text-align: center;
+  margin-block-start: 0.1em;
+  margin-block-end: 0.1em;
+}
+
+div#headline {
+  position: relative; 
+  margin: 5px auto;
+}
+
+div#headline p {
+  font-size: 0.75em;
+  text-align: center;
+  margin-block-start: 0.1em;
+  margin-block-end: 0.1em;
+}
+
+div.wordinputs {
+  width: 100%;
+  position: relative; 
+  margin: 5px auto;
+  display: flex; 
+  flex-wrap: wrap;
+  justify-content: space-between;
+  font-weight: bold;
+  font-size: 1em;
+  text-align: left;
+}
+
+.textin input {
+  /* width: 100px; */
+  font-weight: bold;
+  font-size: 1rem;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+div#viz-help-wrapper {
+  display: grid;
+  width: 330px;
+  margin: 5px auto;
+}
+
+div#the-viz {
+  grid-area: 1 / 1;
+}
+
+div.wordle-line {
+  /* width: 500px; */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 36px;
+  text-align: center;
+  color: white;
+}
+
+div.wordle-tile {
+  width: 60px;
+  height: 60px;
+  text-align: center;
+  line-height: 60px;
+  vertical-align: middle;
+  margin: 3px;
+  border: 1px solid #535353;
+  background-color: #f3f3f3;
+}
+
+div.wordle-tile[data-status="x"] {
+  background-color: #f3f3f3;
+  color: #363b91;
+  opacity: 0.35;
+}
+
+div.wordle-tile[data-status="0"] {
+  background-color: #787C7E;
+  border-color: #787C7E;
+}
+
+div.wordle-tile[data-status="1"] {
+  background-color: #C9B35F;
+  border-color: #C9B35F;
+}
+
+div.wordle-tile[data-status="2"] {
+  background-color: #6CA967;
+  border-color: #6CA967;
+}
+
+div#help-message {
+  grid-area: 1 / 1;
+  width: 330px;
+  height: 395px;
+  background-color: #b2b6d8;
+  border: 1px solid #609fae;
+  padding: 8px;
+  font-size: 11px;
+  text-align: left;
+  display: none;
+}
+
+div#help-message.show {
+  display: block;
+}
+
+div#bottomry {
+  width: 360px;
+  display: flex; 
+  justify-content: space-between;
+  position: relative;
+  margin: 10px auto;
+  font-size: 0.8rem;
+}
+
+div#bottomry p {
+  font-weight: bold;
+  margin-top: 0px;
+  margin-bottom: 3px;
+}
+
+div#wordlist-buttons {
+  display: flex; 
+  flex-direction: column; 
+  justify-content: space-between; 
+}
+
+div#algorithm-buttons {
+  display: flex; 
+  flex-direction: column; 
+  justify-content: space-between; 
+}
+
+@media screen and (max-width: 500px) {
+  .textinput {
+    font-size: 12px;
+  }
+  .textinput input {
+    font-size: 20px;
+    max-width: 140px;
+    flex: 140 140px;
+  }
+  .textinput .placeholder {
+    top: 19px;
+  }
+  .textinput .error-message {
+    width: 140px;
+    flex: 140 140px;
+  }
+  button {
+    flex: 40 40px;
+    max-width: 40px;
+    margin: auto 2px;
+    height: 40px;
+    font-size: 13px;
+    background-color: #f2f2f2;
+    border: 1px solid #cccccc;
+    border-radius: 9px;
+    align-self: center;
+  }
+}
+  
+@media screen and (max-width: 400px) {
+  .textinput {
+    font-size: 12px;
+  }
+  .textinput input {
+    font-size: 18px;
+    max-width: 120px;
+    flex: 120 120px;
+  }
+  .textinput .placeholder {
+    top: 19px;
+  }
+  .textinput .error-message {
+    width: 120px;
+    flex: 120 120px;
+  }
+  button {
+    flex: 40 40px;
+    max-width: 40px;
+    margin: auto 2px;
+    height: 40px;
+    font-size: 13px;
+    background-color: #f2f2f2;
+    border: 1px solid #cccccc;
+    border-radius: 9px;
+    align-self: center;
+  }
+}

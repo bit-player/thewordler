@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <title>The Wordler</title>
+    <meta name="author" content="Brian Hayes">
+    <meta name="viewport" content="width=device-width, user-scalable=yes">
+    <link rel="stylesheet" href="wordler.css"></link>
+  </head>
+
+  <body>
+    <div id="headline">
+      <h2>The Wordler</h2>
+      <p>Enter a start word and a target word to see how the Wordler solves the puzzle.</p>
+    </div>
+    <div class="wordinputs">
+      <label class="textinput" id="start-word-input">
+        <input type="text" id="start-word-text-field" data-whichfield="start" placeholder="&nbsp;"/>
+        <span class="placeholder">Enter start word</span>
+        <span class="error-message" id="start-word-error" aria-live="polite"></span>
+      </label>
+      <label class="textinput" id="target-word-input">
+        <input type="text" id="target-word-text-field" data-whichfield="target" placeholder="&nbsp;"/>
+        <span class="placeholder">Enter target word</span>
+        <span class="error-message" id="target-word-error" aria-live="polite"></span>
+      </label>
+      <button id="go-button">Go</button>
+    </div>
+    <div id="snark"></div>
+    <div id="viz-help-wrapper">
+      <div id="the-viz"></div>
+      <div id="help-message">
+        <p style="margin-top: 0px";><b>Word lists</b></p>
+        <p>Candidates only: Each guess must be conform to all feedback received so far. (Similar to “hard mode.”)</p>
+        <p>Common words: Guesses are chosen from the list of 2,315 common words.</p>
+        <p>Common + arcane: Guesses come from an expanded list of 12,972 words. (Please be patient!)</p>
+        <p><b>Algorithms</b></p>
+        <p>All the algorithms begin by evaluating each available guess with respect to all viable target words, counting how many pairings fall into each of 243 categories.</p>
+        <p>Maximize entropy: Choose the guess word whose distribution of scores has the highest entropy, providing the most information about the target word.</p>
+        <p>Minimize std dev: Choose the guess word whose distribution of categories has the smallest standard deviation.</p>
+        <p>Maximize scatter: Choose the guess word whose distribution has the largest number of non-empty categories.</p>
+      </div>
+    </div>
+    <div id="bottomry">
+      <div id=wordlist-buttons>
+        <p>Word lists:</p>
+        <div>
+          <input type="radio" name="wordlist-buttons" id="candidates-only">
+          <label for="candidates-only" style="position: relative; margin-left: 10px;">Candidates only</label>
+        </div>
+        <div>
+          <input type="radio" name="wordlist-buttons" id="commonwords"  checked>
+          <label for="commonwords" style="position: relative; margin-left: 10px;">Common words</label>
+        </div>
+        <div>
+          <input type="radio" name="wordlist-buttons" id="allwords">
+        <label for="allwords" style="position: relative; margin-left: 10px;">Common + arcane</label>
+        </div>
+      </div>
+      <button id="query-button">?</button>
+      <div id=algorithm-buttons>
+        <p>Algorithms:</p>
+        <div>
+          <input type="radio" name="alg-buttons" id="maxentropy" checked>
+          <label for="maxentropy" style="position: relative; margin-left: 10px;">Maximize entropy</label>
+        </div>
+        <div>
+          <input type="radio" name="alg-buttons" id="minstddev">
+          <label for="minstddev" style="position: relative; margin-left: 10px;">Minimize std dev</label>
+        </div>
+        <div>
+          <input type="radio" name="alg-buttons" id="maxscatter">
+        <label for="maxscatter" style="position: relative; margin-left: 10px;">Maximize scatter</label>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="wordler.js"></script>
+  </body>
+  
+</html>
