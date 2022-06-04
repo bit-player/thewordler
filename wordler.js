@@ -322,6 +322,8 @@ function doGoButton(evt) {
     W.running = false;
     goButton.innerHTML = "Go";
     resetW();
+    resetTileGrid();
+    resetInputs();
     W.gamestate = "awaitInput";
     dispatch();
   }
