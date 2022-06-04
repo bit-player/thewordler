@@ -724,6 +724,7 @@ function entropy(census) {
 // guesses. 
 
 function stddev(census) {
+  census = [...census];   // convert from Uint16s to floats
   const mu = sum(census) / 243;
   const diffs = census.map(x => x - mu);
   const variance = sum(diffs.map(x => x * x)) / 243;
